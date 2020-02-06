@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     'gluten': false,
     'lactose': false,
     'vegan': false,
-    'vegeterian': false,
+    'vegetarian': false,
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
 
@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
         if (_filters['vegan'] && !meal.isVegan) {
           return false;
         }
-        if (_filters['vegeterian'] && !meal.isVegetarian) {
+        if (_filters['vegetarian'] && !meal.isVegetarian) {
           return false;
         }
         return true;
@@ -56,19 +56,22 @@ class _MyAppState extends State<MyApp> {
         accentColor: Colors.amber,
         canvasColor: Color.fromRGBO(255, 254, 229, 1),
         fontFamily: 'Raleway',
-        textTheme: ThemeData.light().textTheme.copyWith(
-              body1: TextStyle(
-                color: Color.fromRGBO(20, 51, 51, 1),
-              ),
-              body2: TextStyle(
-                color: Color.fromRGBO(20, 51, 51, 1),
-              ),
-              title: TextStyle(
-                fontFamily: 'RobotoCondensed',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+        textTheme: ThemeData
+            .light()
+            .textTheme
+            .copyWith(
+          body1: TextStyle(
+            color: Color.fromRGBO(20, 51, 51, 1),
+          ),
+          body2: TextStyle(
+            color: Color.fromRGBO(20, 51, 51, 1),
+          ),
+          title: TextStyle(
+            fontFamily: 'RobotoCondensed',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
 //      home: TabsScreen(),
       initialRoute: '/',
@@ -76,7 +79,7 @@ class _MyAppState extends State<MyApp> {
         '/': (ctx) => TabsScreen(),
         '/category-meals': (ctx) => CategoryMealScreen(_availableMeals),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-        FiltersScreen.routeName: (ctx) => FiltersScreen(_setFilters),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(_filters,_setFilters),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
